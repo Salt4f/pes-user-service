@@ -59,7 +59,7 @@ pipeline {
                     remote.user = env.SSH_USER
                     remote.password = env.SSH_PASSWORD
                     remote.allowAnyHosts = true
-                    sshScript remote: remote, script: "pes/user.sh"
+                    sshCommand remote: remote, command: "./pes/user.sh"
                 }
             }
         }

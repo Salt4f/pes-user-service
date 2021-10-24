@@ -57,11 +57,11 @@ def user_verification(request, pk=None):
 @swagger_auto_schema(methods=['post'],
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
-        required=['email', 'password', 'nickName'],
+        required=['email', 'password', 'nickname'],
         properties={
             'email': openapi.Schema(type=openapi.TYPE_STRING),
             'password': openapi.Schema(type=openapi.TYPE_STRING),
-            'nickName': openapi.Schema(type=openapi.TYPE_STRING)
+            'nickname': openapi.Schema(type=openapi.TYPE_STRING)
         },
     ),
     responses={"201": openapi.Response(

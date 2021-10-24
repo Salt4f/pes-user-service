@@ -51,7 +51,7 @@ def user_verification(request, pk=None):
     if(User.objects.filter(id = user['id']).filter(token = user['token']).exists()):
         user_serializer = UserSerializer(user)
         return Response({ 'verification':True}, status = status.HTTP_201_CREATED)
-    return Response({'verification':False}, status = status.HTTP_404_NOT_FOUND)
+    return Response({'verification':False}, status = status.HTTP_401_UNAUTHORIZED)
 
 
 @swagger_auto_schema(methods=['post'],

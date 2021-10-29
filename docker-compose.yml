@@ -1,10 +1,11 @@
 version: '3'
 
 services: 
-  web:
+  users:
+    container_name: "users-service"
     build: .
-#    image: 'raulplesa/pes-user-service'
+# image: 'raulplesa/pes-user-service'
     ports:
       - 13001:8000
-    volumes:
+    volumes: 
       - './db.sqlite3:/app/db.sqlite3'

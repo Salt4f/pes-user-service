@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-y0mad8+^(5l1@533!=!qk5&e_46z^#mf14t$qqx7h6-g+z!)--
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['users.vgafib.org', 'users.greensharebcn.com']
+ALLOWED_HOSTS = ['users.vgafib.org', 'users.greensharebcn.com', '127.0.0.1', 'localhost']
 
 API_KEY_SECRET = 'secret_value'
 

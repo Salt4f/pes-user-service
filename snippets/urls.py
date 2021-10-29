@@ -23,7 +23,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('users/', views.all_users_api_view, name = 'Users'),
     path('users/<int:pk>/', views.user_detail_api_view, name = 'Concrete user'),
@@ -32,7 +32,5 @@ path('doc/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagg
     path('change-pass-id/<int:pk>/', views.user_change_pass_id_api_view, name = 'Update password by id and token'),
     path('login/', views.user_login, name = 'Login'),
     path('login-id/', views.user_login_id_token, name = 'Login id user'),
-    #descomentar la linia per redireccionar tots els endpoints erronis a la docu
-    #url(r'.*', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')    
+    url(r'.*', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')    
 ]
-

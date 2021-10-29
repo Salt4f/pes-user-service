@@ -51,17 +51,17 @@ def user_verification(request, pk=None):
     if(User.objects.filter(id = user['id']).filter(token = user['token']).exists()):
         user_serializer = UserSerializer(user)
         return Response({ 'verification':True}, status = status.HTTP_201_CREATED)
-    return Response({'verification':False}, status = status.HTTP_404_NOT_FOUND)
+    return Response({'verification':False}, status = status.HTTP_401_UNAUTHORIZED)
 
 
 @swagger_auto_schema(methods=['post'],
     request_body=openapi.Schema(
         type=openapi.TYPE_OBJECT,
-        required=['email', 'password', 'nickName'],
+        required=['email', 'password', 'nickname'],
         properties={
             'email': openapi.Schema(type=openapi.TYPE_STRING),
             'password': openapi.Schema(type=openapi.TYPE_STRING),
-            'nickName': openapi.Schema(type=openapi.TYPE_STRING)
+            'nickname': openapi.Schema(type=openapi.TYPE_STRING)
         },
     ),
     responses={"201": openapi.Response(
@@ -90,10 +90,11 @@ def all_users_api_view(request,pk=None):
     if request.method == 'POST':
         user = request.data
         user_serializer = UserSerializer(data = user)
-        if user_serializer.is_valid():
+        if not (User.objects.filter(email = user['email']).exists() ):
             user_serializer.save(token=keyGenerator.get_secret_key())
             return Response({ 'id': user_serializer.data.get('id'), 'token': user_serializer.data.get('token')}, status = status.HTTP_201_CREATED)
-        return Response(user_serializer.errors)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 
 @swagger_auto_schema(methods=['post'],

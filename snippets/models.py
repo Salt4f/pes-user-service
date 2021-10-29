@@ -9,7 +9,7 @@ from pygments import highlight
 class User(models.Model):
     email = models.TextField(default = '' ,max_length = 30)
     password = models.TextField()
-    nickName = models.TextField(default = '' ,max_length = 15)
+    nickname = models.TextField(default = '' ,max_length = 15)
     token = models.TextField(default = 'xxx')
 
     class Meta:

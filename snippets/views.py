@@ -90,7 +90,7 @@ def all_users_api_view(request,pk=None):
     if request.method == 'POST':
         user = request.data
         user_serializer = UserSerializer(data = user)
-        if not (User.objects.filter(email = user['email']).exists() ):
+        if user_serializer.is_valid() and not (User.objects.filter(email = user['email']).exists() ):
             user_serializer.save(token=keyGenerator.get_secret_key())
             return Response({ 'id': user_serializer.data.get('id'), 'token': user_serializer.data.get('token')}, status = status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)

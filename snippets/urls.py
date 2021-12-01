@@ -27,10 +27,10 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('users/', views.all_users_api_view, name = 'Users'),
     path('users/<int:pk>/', views.user_detail_api_view, name = 'Concrete user'),
-    path('verify-user/',views.user_verification, name = 'User verificatio'),
-    path('change-pass/<int:pk>/', views.user_change_pass_api_view, name = 'Update password'),
-    path('change-pass-id/<int:pk>/', views.user_change_pass_id_api_view, name = 'Update password by id and token'),
-    path('login/', views.user_login, name = 'Login'),
-    path('login-id/', views.user_login_id_token, name = 'Login id user'),
+    path('users/verify/',views.user_verification, name = 'User verificatio'),
+    path('users/<int:pk>/password/', views.user_change_pass_api_view, name = 'Update password'),
+    path('users/<int:pk>/PasswordIdToken/', views.user_change_pass_id_api_view, name = 'Update password by id and token'),
+    path('auth/login/', views.user_login, name = 'Login'),
+    path('auth/login-id/', views.user_login_id_token, name = 'Login id user'),
     url(r'.*', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui')    
 ]
